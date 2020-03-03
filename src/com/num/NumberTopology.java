@@ -9,7 +9,6 @@ public class NumberTopology {
 	public static void main(String[] args) {
 		//创建环境参数对象
 		Config conf = new Config();
-		
 		NumberSpout spout = new NumberSpout();
 		PrintBolt bolt = new PrintBolt();
 		
