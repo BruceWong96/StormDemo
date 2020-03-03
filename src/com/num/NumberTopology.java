@@ -8,11 +8,11 @@ import backtype.storm.topology.TopologyBuilder;
 public class NumberTopology {
 	public static void main(String[] args) {
 		//创建环境参数对象
-		Config conf = new Config();
+		Config conf = new Config(); 
 		NumberSpout spout = new NumberSpout();
 		PrintBolt bolt = new PrintBolt();
 		
-		//创建拓扑构建者对象，通过这个对象可以绑定组件之间的关系
+		//创建拓扑构建者对象，通过这个对象可以绑定组件之间的关系 
 		TopologyBuilder builder = new TopologyBuilder();
 		
 		//绑定数据源组件，1参：组件id，要求唯一性，2参：组件的实例对象
