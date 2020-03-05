@@ -10,6 +10,11 @@ import backtype.storm.tuple.Tuple;
 
 public class PrintBolt extends BaseRichBolt{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void execute(Tuple input) {
 		String word = input.getStringByField("word");
