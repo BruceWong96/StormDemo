@@ -40,7 +40,7 @@
 	<classpathentry kind="lib" path="lib/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/snakeyaml-1.11.jar"/>
-	<classpathentry kind="lib" path="lib/storm-core-0.9.3.jar"/>
+	<classpathentry kind="lib" path="lib/storm-core-0.9.3.jar" sourcepath="H:/2020学习/达内大数据/第4阶段学习/Storm/Storm源码/apache-storm-0.9.3-src"/>
 	<classpathentry kind="lib" path="lib/tools.cli-0.2.4.jar"/>
 	<classpathentry kind="lib" path="lib/tools.logging-0.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/tools.macro-0.1.0.jar"/>
