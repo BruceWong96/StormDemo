@@ -32,6 +32,7 @@ public class InfoTopology {
 		TridentTopology topology = new TridentTopology();
 		//绑定数据源
 		topology.newStream("spout", spout)
+			.each(new Fields("name","age"), new NameFilter())
 			.each(new Fields("name","age"), new PrintFilter());
 		
 		LocalCluster cluster = new LocalCluster();
