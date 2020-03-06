@@ -17,7 +17,6 @@ public class InfoTopology {
 		 * 2参：批大小
 		 * 3参：发生tuple的值
 		 */
-		
 		FixedBatchSpout spout = new FixedBatchSpout(new Fields("name","age"), 
 				2, 
 				new Values("tom",12),
@@ -26,7 +25,7 @@ public class InfoTopology {
 				new Values("jack",18),
 				new Values("tim",19));
 		
-		spout.setCycle(true);
+//		spout.setCycle(true);
 		
 		//获取Trident框架的拓扑构建者
 		TridentTopology topology = new TridentTopology();
@@ -34,7 +33,7 @@ public class InfoTopology {
 		topology.newStream("spout", spout)
 			.each(new Fields("name","age"), new NameFilter())
 			.each(new Fields("name","age"), new PrintFilter());
-		
+		//本地提交
 		LocalCluster cluster = new LocalCluster();
 		
 		cluster.submitTopology("TridentTopology", conf, topology.build());
