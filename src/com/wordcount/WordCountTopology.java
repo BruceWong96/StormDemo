@@ -2,13 +2,20 @@ package com.wordcount;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
+import backtype.storm.StormSubmitter;
+import backtype.storm.generated.AlreadyAliveException;
+import backtype.storm.generated.InvalidTopologyException;
 import backtype.storm.generated.StormTopology;
 import backtype.storm.topology.TopologyBuilder;
 
 public class WordCountTopology {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException {
 		//创建环境参数对象
 		Config conf = new Config(); 
+		
+		//并发度设置为2，默认是1
+		conf.setNumWorkers(2);
+		
 		WordCountSpout spout = new WordCountSpout();
 		SplitBolt splitBolt = new SplitBolt();
 		CountBolt countBolt = new CountBolt();
@@ -28,7 +35,10 @@ public class WordCountTopology {
 		StormTopology topology = builder.createTopology();
 		
 		//storm的本地运行对象。 本地模式一般用于测试
-		LocalCluster cluster = new LocalCluster();
+//		LocalCluster cluster = new LocalCluster();
+		
+		//集群模式提交
+		StormSubmitter cluster = new StormSubmitter();
 		
 		//运行拓扑，1参：拓扑id，要求唯一 2参：storm环境对象 3参：拓扑对象
 		cluster.submitTopology("wordCountTopology", conf, topology);
