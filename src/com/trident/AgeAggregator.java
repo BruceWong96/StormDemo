@@ -11,7 +11,6 @@ public class AgeAggregator extends BaseAggregator<Integer>{
 	
 	@Override
 	public Integer init(Object batchId, TridentCollector collector) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
