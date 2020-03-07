@@ -18,7 +18,7 @@ public class InfoTopology {
 		 * 3参：发生tuple的值
 		 */
 		FixedBatchSpout spout = new FixedBatchSpout(new Fields("name","age"), 
-				2, 
+				5, 
 				new Values("tom",12),
 				new Values("rose",22),
 				new Values("jerry",23),
@@ -30,9 +30,17 @@ public class InfoTopology {
 		//获取Trident框架的拓扑构建者
 		TridentTopology topology = new TridentTopology();
 		//绑定数据源
+//		topology.newStream("spout", spout)
+//			.each(new Fields("name","age"), new NameFilter())
+//			.each(new Fields("name","age"), new GenderFunction(), new Fields("gender"))
+//			.each(new Fields("name","age", "gender"), new PrintFilter());
+		
 		topology.newStream("spout", spout)
-			.each(new Fields("name","age"), new NameFilter())
-			.each(new Fields("name","age"), new PrintFilter());
+			.partitionAggregate(new Fields("name", "age"),
+					new AgeCombinerAggregator(),
+					new Fields("ageSum"))
+			.each(new Fields("ageSum"), new PrintFilter());
+		
 		//本地提交
 		LocalCluster cluster = new LocalCluster();
 		

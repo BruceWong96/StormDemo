@@ -22,7 +22,7 @@ public class PrintFilter extends BaseFilter{
 		while (iterator.hasNext()) {
 			String key = iterator.next();
 			Object value = tuple.getValueByField(key);
-			System.out.println(key + ":" + value);
+			System.out.println(key + ":" + value );
 		}
 		
 		return false;
