@@ -37,7 +37,7 @@ public class InfoTopology {
 		
 		topology.newStream("spout", spout)
 			.partitionAggregate(new Fields("name", "age"),
-					new AgeCombinerAggregator(),
+					new AgeReducerAggregator(),
 					new Fields("ageSum"))
 			.each(new Fields("ageSum"), new PrintFilter());
 		
