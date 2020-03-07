@@ -18,7 +18,7 @@ public class InfoTopology {
 		 * 3参：发生tuple的值
 		 */
 		FixedBatchSpout spout = new FixedBatchSpout(new Fields("name","age"), 
-				5, 
+				1, 
 				new Values("tom",12),
 				new Values("rose",22),
 				new Values("jerry",23),
@@ -37,7 +37,7 @@ public class InfoTopology {
 		
 		topology.newStream("spout", spout)
 			.partitionAggregate(new Fields("name", "age"),
-					new AgeReducerAggregator(),
+					new AgeAggregator(),
 					new Fields("ageSum"))
 			.each(new Fields("ageSum"), new PrintFilter());
 		
